@@ -1,0 +1,3 @@
+-- -*- mode: sql -*-
+SELECT CEIL(AVG(Salary) - AVG(CAST(REPLACE(SALARY, ‘0’, ‘ ‘) AS UNSIGNED))) 
+FROM EMPLOYEES;
