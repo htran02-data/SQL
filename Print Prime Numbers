@@ -1,0 +1,12 @@
+-- -*- mode: sql -*-
+WITH RECURSIVE nums AS (
+    SELECT 2 AS n
+    UNION ALL
+    SELECT n + 1 FROM nums WHERE n < 1000
+)
+SELECT GROUP_CONCAT(a.n ORDER BY a.n SEPARATOR '&')
+FROM nums a
+WHERE NOT EXISTS (
+    SELECT 1 FROM nums b
+    WHERE b.n < a.n AND a.n % b.n = 0
+);
